@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class Dec2HexTest {
 	
@@ -44,6 +45,29 @@ public class Dec2HexTest {
 	@Test
 	public void testConvertNegativeNumberToHex() {
 		assertEquals("-2A", dec2hex.convert(-42));
+	}
+
+	// Test the command line input
+	@Test
+	public void testValidUserInput() {
+		// Create command line arg
+		String[] args = {"42"};
+		Integer result = Dec2Hex.validateInput(args);
+		assertEquals(Integer.valueOf(42), result);		
+	}
+
+	@Test
+	public void testMissingUserInput() {
+		String[] args = {};
+		Integer result = Dec2Hex.validateInput(args);
+		assertNull(result);
+	}
+
+	@Test
+	public void testStringUserInput() {
+		String[] args = {"FourtyTwo"};
+		Integer result = Dec2Hex.validateInput(args);
+		assertNull(result);
 	}
 
 

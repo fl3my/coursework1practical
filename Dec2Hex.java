@@ -5,6 +5,54 @@ import java.io.IOException;
 
 class Dec2Hex
 {
+	private static final Logger logger = Logger.getLogger(Dec2Hex.class.getName());
+
+	public static void main(String args[]) throws IOException
+	{
+		// Read in the logging properties file
+		LogManager.getLogManager().readConfiguration(new FileInputStream("logging.properties"));
+	 
+		Integer inputNum = validateInput(args);
+
+		if (inputNum != null) {
+			// Print a start message using a logger
+			logger.info(String.format("Converting the Decimal Value %d to Hex...", inputNum));
+					
+			String hexadecimal = Dec2Hex.convert(inputNum);
+
+			// Print the resulting hexadecimal string
+			logger.info(String.format("Hexadecimal representation is: %s", hexadecimal.toString()));
+		}
+	}
+	
+	/** 
+	 * Convert the command line input value to an integer or return null if invalid
+	 * */
+	public static Integer validateInput(String[] args) {
+		// Check if there are cmd args
+		if (args.length == 0) {
+			logger.info("Usage: java Dec2Hex <integer>");
+			return null;
+		}
+
+		// Get the first command line arg
+		String inputStr = args[0];
+
+		try {
+			// Parse input as an int
+			return Integer.parseInt(inputStr);
+		} catch (NumberFormatException e) {
+			//Handle a non integer input
+			logger.severe("Error: input is not a valid integer");
+			return null;
+		}
+	
+		
+	}
+	
+	/**
+	 * Convert a integer into a positive or negative hexadecimal
+	 * */
 	public static String convert(int decimalNum) {
 		
 		// Handle if input is 0
@@ -42,26 +90,6 @@ class Dec2Hex
 		}
 
 		return hexadecimal.toString();
-	}
-
-	public static void main(String args[]) throws IOException
-	{
-		// Read in the logging properties file
-		LogManager.getLogManager().readConfiguration(new FileInputStream("logging.properties"));
-		
-		// Create a logger
-		Logger logger = Logger.getLogger(Dec2Hex.class.getName());
-
-		// Get the number from the first command line argument
-		int decimalNum = Integer.parseInt(args[0]);
-	
-		// Print a start message using a logger
-		logger.info(String.format("Converting the Decimal Value %d to Hex...", decimalNum));
-		
-		String hexadecimal = Dec2Hex.convert(decimalNum);
-
-		// Print the resulting hexadecimal string
-		logger.info(String.format("Hexadecimal representation is: %s", hexadecimal.toString()));
 	}
 }
 
