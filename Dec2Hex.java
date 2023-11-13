@@ -7,7 +7,7 @@ class Dec2Hex
 {
 	private static final Logger logger = Logger.getLogger(Dec2Hex.class.getName());
 
-	public static void main(String args[]) throws IOException
+	public static void main(String[] args) throws IOException
 	{
 		// Read in the logging properties file
 		LogManager.getLogManager().readConfiguration(new FileInputStream("logging.properties"));
@@ -21,7 +21,7 @@ class Dec2Hex
 			String hexadecimal = Dec2Hex.convert(inputNum);
 
 			// Print the resulting hexadecimal string
-			logger.info(String.format("Hexadecimal representation is: %s", hexadecimal.toString()));
+			logger.info(String.format("Hexadecimal representation is: %s", hexadecimal));
 		}
 	}
 	
