@@ -3,6 +3,10 @@ import java.util.Scanner;
 class Dec2Hex
 {
 	public static int Arg1;
+	
+	public static String convert(int decimal) {
+		return "test";
+	}
 
 	public static void main(String args[])
 	{
