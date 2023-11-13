@@ -27,7 +27,7 @@ class Dec2Hex
 		int num = decimalNum;
 		
 		// Print a start message using a logger
-		logger.info("Converting the Decimal Value " + num + " to Hex...");
+		logger.info(String.format("Converting the Decimal Value %d to Hex...", num));
 
 		// Create an empty string builder object
 		StringBuilder hexadecimal = new StringBuilder();
@@ -46,7 +46,7 @@ class Dec2Hex
 		}
 		
 		// Print the resulting hexadecimal string
-		logger.info("Hexadecimal representation is: " + hexadecimal.toString());
+		logger.info(String.format("Hexadecimal representation is: %s", hexadecimal.toString()));
 	}
 }
 
