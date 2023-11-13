@@ -5,12 +5,20 @@ import java.io.IOException;
 
 class Dec2Hex
 {
-	public static String convert(int decimalNum) {	
+	public static String convert(int decimalNum) {
+		
+		// Handle if input is 0
+		if (decimalNum == 0) {
+			return "0";
+		}
+
 		// Initialize a char array with all hexadecimal values
 		char[] hexChars = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 		
 		int remainder;
-		int num = decimalNum;
+
+		// Work with only whole numbers
+		int num = Math.abs(decimalNum);
 		
 		// Create an empty string builder object
 		StringBuilder hexadecimal = new StringBuilder();
@@ -26,6 +34,11 @@ class Dec2Hex
 
 			// Divide the number by 16
 			num = num / 16;
+		}
+
+		// Add a negative symbol back into the string
+		if (decimalNum < 0) {
+			hexadecimal.insert(0, "-");
 		}
 
 		return hexadecimal.toString();
