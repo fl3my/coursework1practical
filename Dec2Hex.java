@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.logging.Logger;
+import java.util.logging.LogManager;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 class Dec2Hex
 {
@@ -6,8 +9,14 @@ class Dec2Hex
 		return "test";
 	}
 
-	public static void main(String args[])
+	public static void main(String args[]) throws IOException
 	{
+		// Read in the logging properties file
+		LogManager.getLogManager().readConfiguration(new FileInputStream("logging.properties"));
+		
+		// Create a logger
+		Logger logger = Logger.getLogger(Dec2Hex.class.getName());
+
 		// Get the number from the first command line argument
 		int decimalNum = Integer.parseInt(args[0]);
 		
@@ -17,9 +26,9 @@ class Dec2Hex
 		int remainder;
 		int num = decimalNum;
 		
-		// Print a start message
-		System.out.println("Converting the Decimal Value " + num + " to Hex...");
-		
+		// Print a start message using a logger
+		logger.info("Converting the Decimal Value " + num + " to Hex...");
+
 		// Create an empty string builder object
 		StringBuilder hexadecimal = new StringBuilder();
 
@@ -37,7 +46,7 @@ class Dec2Hex
 		}
 		
 		// Print the resulting hexadecimal string
-		System.out.println("Hexadecimal representation is: " + hexadecimal.toString());
+		logger.info("Hexadecimal representation is: " + hexadecimal.toString());
 	}
 }
 
